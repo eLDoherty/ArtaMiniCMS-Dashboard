@@ -1,0 +1,11 @@
+@use './abstracts' as *;
+@use './customizers' as *;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f5f5f5;
+}
