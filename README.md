@@ -57,7 +57,7 @@ npm run dev
 
 The application will be available at:
 
-http://localhost:3000
+http://localhost:3001 (Since we run the back end on port 3000 -- it's editable on package.json)
 
 ### 4. Run Production Build
 Build the application for production:
