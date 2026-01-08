@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Arta Mini CMS Dashboard
 
-## Getting Started
+Arta Mini CMS Dashboard is a web-based admin dashboard built with **Next.js**.  
+This project is designed to **consume the REST API** provided by **ArtaMiniCMS** and serves as a centralized control panel for managing content, users, media, and site configuration.
 
-First, run the development server:
+API Repository:  
+https://github.com/eLDoherty/ArtaMiniCMS
+
+---
+
+## Tech Stack
+
+- Next.js 16 (App Router)
+- React 19
+- TypeScript
+- SCSS (Sass)
+- Ant Design
+- CKEditor 5
+- Axios
+- JWT-based Authentication
+- Drag & Drop (hello-pangea/dnd)
+
+---
+
+## Features
+
+### Authentication & Security
+- JWT-based authentication
+- Role-based access control
+- Cookie-based session handling
+- Protected admin routes
+
+### Content Management
+- Article management (CRUD)
+- Page management with block-based layout
+- Drag & drop page builder
+- Rich text editor using CKEditor 5
+
+### Media Management
+- Media upload and management
+- Media listing with pagination
+- Media deletion
+- Media reuse across pages and articles
+- CKEditor media integration
+
+### User Management
+- User listing and management
+- Role and permission handling
+- User activation and deactivation
+- Secure access control per role
+
+### Site Settings
+- Global site configuration
+- SEO settings (meta title, description)
+- Logo, favicon, and brand assets
+- General site preferences
+
+### Dashboard Analytics
+- Content statistics overview
+- Article and page activity summary
+- Media usage insights
+- Basic system and usage metrics
+
+---
+
+## Project Scripts
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+npm run dev     # Run development server on port 3001
+npm run build   # Build for production
+npm run start   # Start production server
+npm run lint    # Run ESLint
