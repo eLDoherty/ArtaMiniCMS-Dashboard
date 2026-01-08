@@ -1,71 +1,36 @@
-# ArtaMiniCMS-Dashboard
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-ArtaMiniCMS-Dashboard is an admin dashboard application built to consume the RESTful API provided by ArtaMiniCMS.
+## Getting Started
 
-This project acts purely as a frontend admin panel and does not include its own backend. All authentication and data operations are handled by the ArtaMiniCMS API.
+First, run the development server:
 
-## Backend API
-
-This dashboard consumes the API from the following repository:
-
-https://github.com/eLDoherty/ArtaMiniCMS
-
-Make sure the API service is running and accessible before using this dashboard.
-
-## UI Framework
-
-This dashboard is built using Ant Design, providing a clean and consistent user interface with ready-to-use components suitable for admin dashboards.
-
-## Features
-
-- API-based authentication
-- Content management (articles, pages, etc.)
-- Fully API-driven and stateless
-- Modern admin interface using Ant Design
-- Decoupled frontend and backend architecture
-
-
-## Purpose
-
-This project is intended to:
-- Serve as an admin dashboard for ArtaMiniCMS
-- Demonstrate separation of concerns between frontend and backend
-- Provide a base structure for building custom CMS dashboards
-
-## Notes
-
-- Ensure CORS and authentication settings are properly configured on the API side
-
-## Usage
-
-### 1. Pull the Repository
-Clone this repository to your local machine:
-
-git clone https://github.com/eLDoherty/ArtaMiniCMS-Dashboard.git
-
-cd ArtaMiniCMS-Dashboard
-
-### 2. Install Dependencies
-Install all required dependencies using npm:
-
-npm install
-
-### 3. Run Development Server
-Start the development server:
-
+```bash
 npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-The application will be available at:
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-http://localhost:3001 (Since we run the back end on port 3000 -- it's editable on package.json)
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-### 4. Run Production Build
-Build the application for production:
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-npm run build
+## Learn More
 
-Start the production server:
+To learn more about Next.js, take a look at the following resources:
 
-npm run start
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

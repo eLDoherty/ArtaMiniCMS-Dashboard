@@ -9,9 +9,12 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-react": "^11.0.1",
     "@hello-pangea/dnd": "^18.0.1",
     "antd": "^6.1.2",
     "axios": "^1.13.2",
+    "ckeditor5": "^47.3.0",
+    "dotenv": "^17.2.3",
     "js-cookie": "^3.0.5",
     "next": "16.1.1",
     "react": "19.2.3",

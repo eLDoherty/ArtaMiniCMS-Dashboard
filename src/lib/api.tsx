@@ -2,14 +2,22 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000',
-  withCredentials: true,
-  headers: { 'Content-Type': 'application/json' },
+  baseURL: process.env.NEXT_PUBLIC_API_BASE || 'http://localhost:3000',
+  withCredentials: true
 })
 
 api.interceptors.request.use((config) => {
   const token = Cookies.get('token')
-  if (token) config.headers.Authorization = `Bearer ${token}`
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`
+  }
+
+  if (!(config.data instanceof FormData)) {
+    config.headers['Content-Type'] = 'application/json'
+  } else {
+    delete config.headers['Content-Type']
+  }
+
   return config
 })
 

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Form, Input, Button, Card, Typography, Alert } from "antd";
 import api from "@/lib/api";
 import Cookies from "js-cookie";
+import AppLoader from "@/components/globals/AppLoader";
 
 const { Title } = Typography;
 
@@ -35,56 +36,58 @@ export default function LoginPage() {
   };
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        background: "#f5f5f5",
-      }}
-    >
-      <Card style={{ width: 360 }}>
-        <Title level={3} style={{ textAlign: "center" }}>
-          Login
-        </Title>
+    <AppLoader>
+      <div
+        style={{
+          minHeight: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background: "#f5f5f5",
+        }}
+      >
+        <Card style={{ width: 360 }}>
+          <Title level={3} style={{ textAlign: "center" }}>
+            Login
+          </Title>
 
-        {error && (
-          <Alert
-            type="error"
-            title={error}
-            showIcon
-            style={{ marginBottom: 16 }}
-          />
-        )}
+          {error && (
+            <Alert
+              type="error"
+              title={error}
+              showIcon
+              style={{ marginBottom: 16 }}
+            />
+          )}
 
-        <Form layout="vertical" onFinish={onFinish}>
-          <Form.Item
-            label="Email"
-            name="email"
-            rules={[
-              { required: true, message: "Email wajib diisi" },
-              { type: "email", message: "Format email tidak valid" },
-            ]}
-          >
-            <Input placeholder="email@example.com" />
-          </Form.Item>
+          <Form layout="vertical" onFinish={onFinish}>
+            <Form.Item
+              label="Email"
+              name="email"
+              rules={[
+                { required: true, message: "Email wajib diisi" },
+                { type: "email", message: "Format email tidak valid" },
+              ]}
+            >
+              <Input placeholder="email@example.com" />
+            </Form.Item>
 
-          <Form.Item
-            label="Password"
-            name="password"
-            rules={[{ required: true, message: "Password wajib diisi" }]}
-          >
-            <Input.Password placeholder="••••••••" />
-          </Form.Item>
+            <Form.Item
+              label="Password"
+              name="password"
+              rules={[{ required: true, message: "Password wajib diisi" }]}
+            >
+              <Input.Password placeholder="••••••••" />
+            </Form.Item>
 
-          <Form.Item>
-            <Button type="primary" htmlType="submit" loading={loading} block>
-              Login
-            </Button>
-          </Form.Item>
-        </Form>
-      </Card>
-    </div>
+            <Form.Item>
+              <Button type="primary" htmlType="submit" loading={loading} block>
+                Login
+              </Button>
+            </Form.Item>
+          </Form>
+        </Card>
+      </div>
+    </AppLoader>
   );
 }

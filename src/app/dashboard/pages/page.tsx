@@ -2,7 +2,16 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Table, Tag, Space, Button, Card, Alert } from "antd";
+import {
+  Table,
+  Tag,
+  Space,
+  Button,
+  Card,
+  Alert,
+  Popconfirm,
+  message,
+} from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import type { ColumnsType } from "antd/es/table";
 import api from "@/lib/api";
@@ -16,28 +25,48 @@ interface PageItem {
 }
 
 export default function PagesPage() {
+  const router = useRouter();
   const [data, setData] = useState<PageItem[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  const fetchPages = async () => {
+    try {
+      setLoading(true);
+      const res = await api.get<PageItem[]>("/pages");
+      setData(res.data);
+    } catch (err: any) {
+      setError(err.message || "Failed to fetch pages");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchPages = async () => {
-      try {
-        const res = await api.get<PageItem[]>("/pages");
-        setData(res.data);
-      } catch (err: any) {
-        setError(err.message || "Failed to fetch pages");
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchPages();
   }, []);
 
+  const handleDelete = async (id: number) => {
+    try {
+      await api.delete(`/pages/${id}`);
+      message.success("Page deleted successfully");
+      fetchPages();
+    } catch (err: any) {
+      message.error(err.message || "Failed to delete page");
+    }
+  };
+
   const columns: ColumnsType<PageItem> = [
-    { title: "Title", dataIndex: "title", key: "title" },
-    { title: "Slug", dataIndex: "slug", key: "slug" },
+    {
+      title: "Title",
+      dataIndex: "title",
+      key: "title",
+    },
+    {
+      title: "Slug",
+      dataIndex: "slug",
+      key: "slug",
+    },
     {
       title: "Status",
       dataIndex: "status",
@@ -48,22 +77,40 @@ export default function PagesPage() {
         </Tag>
       ),
     },
-    { title: "Last Updated", dataIndex: "updatedAt", key: "updatedAt" },
+    {
+      title: "Last Updated",
+      dataIndex: "updatedAt",
+      key: "updatedAt",
+    },
     {
       title: "Action",
       key: "action",
       render: (_, record) => (
         <Space>
-          <Button type="link">Edit</Button>
-          <Button type="link" danger>
-            Delete
+          <Button
+            type="link"
+            onClick={() =>
+              router.push(`/dashboard/pages/edit/${record.id}`)
+            }
+          >
+            Edit
           </Button>
+
+          <Popconfirm
+            title="Delete page"
+            description="Are you sure you want to delete this page?"
+            okText="Yes"
+            cancelText="Cancel"
+            onConfirm={() => handleDelete(record.id)}
+          >
+            <Button type="link" danger>
+              Delete
+            </Button>
+          </Popconfirm>
         </Space>
       ),
     },
   ];
-
-  const router = useRouter();
 
   return (
     <Card
@@ -81,11 +128,12 @@ export default function PagesPage() {
       {error && (
         <Alert
           type="error"
-          title={error}
+          message={error}
           showIcon
           style={{ marginBottom: 16 }}
         />
       )}
+
       <Table
         rowKey="id"
         columns={columns}
